@@ -15,13 +15,10 @@ public class Uczestnictwo {
 	@GeneratedValue
 	private int id_uczestnictwa;
 	private int liczba_osob;
+	@OneToOne(fetch=FetchType.LAZY)
 	public Rezerwacja m_Rezerwacja;
 
 	public Uczestnictwo(){
-
-	}
-
-	public void finalize() throws Throwable {
 
 	}
 

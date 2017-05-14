@@ -22,10 +22,6 @@ public class Cennik {
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-
 	public double getCena() {
 		return cena;
 	}

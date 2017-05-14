@@ -25,9 +25,6 @@ public class Katalog {
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
 
 	public int getOkres() {
 		return okres;

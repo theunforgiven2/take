@@ -23,10 +23,6 @@ public class Wycieczka {
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-
 	public long getData_odjazdu() {
 		return data_odjazdu;
 	}

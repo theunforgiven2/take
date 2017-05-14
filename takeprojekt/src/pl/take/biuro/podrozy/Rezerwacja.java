@@ -17,13 +17,10 @@ public class Rezerwacja {
 	private int liczba_osob;
 	private boolean stan;
 	private double zaliczka;
+	@ManyToOne
 	public Wycieczka m_Wycieczka;
 
 	public Rezerwacja(){
-
-	}
-
-	public void finalize() throws Throwable {
 
 	}
 

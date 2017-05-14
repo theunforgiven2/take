@@ -1,5 +1,7 @@
 package pl.take.biuro.podrozy;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -18,6 +20,8 @@ public class Wycieczka {
 	private long data_przyjazdu;
 	private String nazwa;
 	private String opis;
+	@OneToMany(mappedBy="m_Wycieczka")
+	private List<Rezerwacja> m_Rezerwacje;
 
 	public Wycieczka(){
 

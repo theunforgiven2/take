@@ -1,0 +1,10 @@
+
+	<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+		<persistence-unit name="takeprojekt">
+			<class>pl.take.biuro.podrozy.Cennik</class>
+			<class>pl.take.biuro.podrozy.Katalog</class>
+			<class>pl.take.biuro.podrozy.Rezerwacja</class>
+			<class>pl.take.biuro.podrozy.Uczestnictwo</class>
+			<class>pl.take.biuro.podrozy.Wycieczka</class>
+		</persistence-unit>
+	</persistence>

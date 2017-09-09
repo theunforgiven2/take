@@ -18,8 +18,8 @@ public class Katalog {
 	private int okres;
 	@OneToMany
 	public List<Cennik> m_Cennik;
-	@OneToMany
-	public List<Wycieczka> m_Wycieczka;
+	//@OneToMany
+	//public List<Wycieczka> m_Wycieczka;
 
 	public Katalog(){
 

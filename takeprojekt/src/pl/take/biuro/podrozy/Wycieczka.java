@@ -29,6 +29,11 @@ public class Wycieczka {
 	public Wycieczka(){
 
 	}
+	
+	public int getID()
+	{
+		return id_wycieczki;
+	}
 
 	public long getData_odjazdu() {
 		return data_odjazdu;

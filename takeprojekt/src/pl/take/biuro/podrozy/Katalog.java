@@ -21,11 +21,15 @@ public class Katalog {
 	private int okres;
 	@OneToMany
 	private Collection<Wycieczka> wycieczka;
+	
 	public Katalog(){
 
 	}
 
-
+	public int getID()
+	{
+		return id_katalog;
+	}
 	public int getOkres() {
 		return okres;
 	}
@@ -34,14 +38,35 @@ public class Katalog {
 		this.okres = okres;
 	}
 
-
-	public Collection<Wycieczka> getWycieczka() {
-	    return wycieczka;
+	public Wycieczka getWycieczka(int id) {
+		Wycieczka[] arr = (Wycieczka[])wycieczka.toArray();
+	    return arr[id];
 	}
 
-
-	public void setWycieczka(Collection<Wycieczka> param) {
-	    this.wycieczka = param;
+	public void setWycieczka(Wycieczka wycieczka) {
+	    this.wycieczka.add(wycieczka);
+	}
+	
+	public Collection<Wycieczka> getlistaWycieczek()
+	{
+		return wycieczka;
+	}
+	
+	public void setlistaWycieczek(Collection<Wycieczka> lista)
+	{
+		this.wycieczka = lista;
+	}
+	
+	public void usunWycieczke(Wycieczka wyc)
+	{
+		for(Wycieczka w : wycieczka)
+		{
+			if (w.getID() == wyc.getID())
+					{
+						wycieczka.remove(w);
+						break;
+					}	
+		}
 	}
 
 }//end Katalog

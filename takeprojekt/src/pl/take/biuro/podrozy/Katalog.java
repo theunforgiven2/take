@@ -1,8 +1,11 @@
 package pl.take.biuro.podrozy;
 
-import java.util.List;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import pl.take.biuro.podrozy.Wycieczka;
+import java.util.Collection;
+import javax.persistence.OneToMany;
 
 /**
  * @author kp
@@ -17,10 +20,7 @@ public class Katalog {
 	private int id_katalog;
 	private int okres;
 	@OneToMany
-	public List<Cennik> m_Cennik;
-	//@OneToMany
-	//public List<Wycieczka> m_Wycieczka;
-
+	private Collection<Wycieczka> wycieczka;
 	public Katalog(){
 
 	}
@@ -33,4 +33,15 @@ public class Katalog {
 	public void setOkres(int okres) {
 		this.okres = okres;
 	}
+
+
+	public Collection<Wycieczka> getWycieczka() {
+	    return wycieczka;
+	}
+
+
+	public void setWycieczka(Collection<Wycieczka> param) {
+	    this.wycieczka = param;
+	}
+
 }//end Katalog

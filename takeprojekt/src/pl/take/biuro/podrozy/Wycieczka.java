@@ -1,8 +1,11 @@
 package pl.take.biuro.podrozy;
 
-import java.util.List;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import pl.take.biuro.podrozy.Rezerwacja;
+import java.util.Collection;
+import javax.persistence.OneToMany;
 
 /**
  * @author kp
@@ -20,9 +23,9 @@ public class Wycieczka {
 	private long data_przyjazdu;
 	private String nazwa;
 	private String opis;
-	@OneToMany(mappedBy="m_Wycieczka")
-	private List<Rezerwacja> m_Rezerwacje;
-
+	@OneToMany
+	private Collection<Rezerwacja> rezerwacja;
+	
 	public Wycieczka(){
 
 	}
@@ -58,4 +61,13 @@ public class Wycieczka {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
+
+	public Collection<Rezerwacja> getRezerwacja() {
+	    return rezerwacja;
+	}
+
+	public void setRezerwacja(Collection<Rezerwacja> param) {
+	    this.rezerwacja = param;
+	}
+
 }//end Wycieczka

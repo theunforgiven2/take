@@ -1,6 +1,8 @@
 package pl.take.biuro.podrozy;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * @author kp
@@ -17,8 +19,6 @@ public class Rezerwacja {
 	private int liczba_osob;
 	private boolean stan;
 	private double zaliczka;
-	@ManyToOne
-	public Wycieczka m_Wycieczka;
 
 	public Rezerwacja(){
 
@@ -47,4 +47,5 @@ public class Rezerwacja {
 	public void setZaliczka(double zaliczka) {
 		this.zaliczka = zaliczka;
 	}
+
 }//end Rezerwacja

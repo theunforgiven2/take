@@ -43,17 +43,6 @@ public class Katalog {
 		return id_katalog;
 	}
 	
-	public List<Wycieczka> getlistaWycieczek()
-	{
-		return wycieczka;
-	}
-	
-	public void setlistaWycieczek(List<Wycieczka> lista)
-	{
-		this.wycieczka = lista;
-	}
-	
-
 	public String getNazwa() {
 		return nazwa;
 	}
@@ -65,6 +54,16 @@ public class Katalog {
 	public void dodajWycieczke(Wycieczka wycieczka)
 	{
 		this.wycieczka.add(wycieczka);
+	}
+	
+	public List<Wycieczka> getlistaWycieczek()
+	{
+		return wycieczka;
+	}
+	
+	public void setlistaWycieczek(List<Wycieczka> lista)
+	{
+		this.wycieczka = lista;
 	}
 
 }//end Katalog

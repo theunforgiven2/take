@@ -9,12 +9,13 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 
 @Path("/podrozy")
 
-@Consumes({ "application/xml" })
-@Produces({ "application/xml" })
+@Consumes({ "application/json" })
+@Produces({ "application/json" })
 public class BiuroREST implements Biuro {
 	
 	@EJB

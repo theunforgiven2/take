@@ -218,9 +218,9 @@ public class BiuroREST implements Biuro {
 	
 	@PUT
 	@Path("/katalog/{idk}/wycieczka/{idw}/miejsce/{idm}")
-	public void aktualizujWycieczkeMiejsceWKatalog(@PathParam("idk") int idKatalog, @PathParam("idw") int idWycieczka, @PathParam("idm") int idMiejsce)
+	public void aktualizujWycieczkeMiejsceWKatalog(Katalog katalog, @PathParam("idk") int idKatalog, @PathParam("idw") int idWycieczka, @PathParam("idm") int idMiejsce)
 	{
-		bean.aktualizujWycieczkeMiejsceWKatalog(idKatalog, idWycieczka, idMiejsce);
+		bean.aktualizujWycieczkeMiejsceWKatalog(katalog, idKatalog, idWycieczka, idMiejsce);
 	}
 	
 	@PUT
@@ -232,9 +232,9 @@ public class BiuroREST implements Biuro {
 	
 	@PUT
 	@Path("/wycieczka/{idw}/miejsce/{idm}")
-	public void aktualizujMiejsceWWycieczka(@PathParam("idw") int idWycieczka, @PathParam("idm") int idMiejsce)
+	public void aktualizujMiejsceWWycieczka(Wycieczka wycieczka, @PathParam("idw") int idWycieczka, @PathParam("idm") int idMiejsce)
 	{
-		bean.aktualizujMiejsceWWycieczka(idWycieczka, idMiejsce);
+		bean.aktualizujMiejsceWWycieczka(wycieczka, idWycieczka, idMiejsce);
 	}
 	
 	// TODO NIE DZIALAJO DO POPRAWY

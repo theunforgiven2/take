@@ -111,8 +111,6 @@ public class BiuroREST implements Biuro {
 		bean.usunKatalog(id);
 	}
 	
-	
-	
 	@POST
 	@Path("/rezerwacja/katalog/{id}")
 	public void stworzRezerwacje(Rezerwacja rezerwacja, @PathParam("id") int id)
@@ -197,6 +195,26 @@ public class BiuroREST implements Biuro {
 		bean.aktualizujMiejsce(miejsce, id);
 	}
 	
+	@PUT
+	@Path("/rezerwacja/{id}")
+	public void aktualizujRezerwacje(Rezerwacja rezerwacja, @PathParam("id") int id)
+	{
+		bean.aktualizujRezerwacje(rezerwacja, id);
+	}
+	
+	@PUT
+	@Path("/katalog/{id}")
+	public void aktualizujKatalog(Katalog katalog, @PathParam("id") int id)
+	{
+		bean.aktualizujKatalog(katalog, id);
+	}
+	
+	@PUT
+	@Path("/wycieczka/{id}")
+	public void aktualizujWycieczka(Wycieczka wycieczka, @PathParam("id") int id)
+	{
+		bean.aktualizujWycieczke(wycieczka, id);
+	}
 	
 	// TODO NIE DZIALAJO DO POPRAWY
 	@Override

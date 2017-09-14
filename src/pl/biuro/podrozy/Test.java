@@ -101,6 +101,13 @@ public class Test {
 					System.out.println(txt);
 					System.out.println("-----------------------");
 					
+//					url = serverUrl+"/katalog/2/wycieczka";
+//					System.out.println("DOGET "+url );
+//					txt = HttpHelper.doGet(url);
+//					System.out.println("-----------------------");
+//					System.out.println(txt);
+//					System.out.println("-----------------------");
+					
 					
 				} catch (Exception e) {e.printStackTrace();}
 				

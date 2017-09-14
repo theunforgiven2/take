@@ -243,4 +243,31 @@ public class BiuroEJB{
 		m.setAdres(miejsce.getAdres());
 		m.setMiejscowosc(miejsce.getMiejscowosc());
 	}
+	
+	public void aktualizujRezerwacje(Rezerwacja rezerwacja, int id)
+	{
+		Rezerwacja rez = em.find(Rezerwacja.class, id);
+		rez.setLiczba_osob(rezerwacja.getLiczba_osob());
+		rez.setStan(rezerwacja.isStan());
+		rez.setZaliczka(rezerwacja.getZaliczka());
+		rez.setKatalog(rezerwacja.getKatalog());
+	}
+	
+	public void aktualizujKatalog(Katalog katalog, int id)
+	{
+		Katalog kat = em.find(Katalog.class, id);
+		kat.setCena(katalog.getCena());
+		kat.setData_odjazdu(katalog.getData_odjazdu());
+		kat.setData_przyjazdu(katalog.getData_przyjazdu());
+		kat.setMiejsce(katalog.getMiejsce());
+		kat.setWycieczka(katalog.getWycieczka());
+	}
+	
+	public void aktualizujWycieczke(Wycieczka wycieczka, int id)
+	{
+		Wycieczka wyc = em.find(Wycieczka.class, id);
+		wyc.setNazwa(wycieczka.getNazwa());
+		wyc.setOpis(wycieczka.getOpis());
+		wyc.setMiejsce(wycieczka.getMiejsce());
+	}
 }

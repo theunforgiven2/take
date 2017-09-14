@@ -4,13 +4,18 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 //import pl.take.biuro.podrozy.Rezerwacja;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -24,21 +29,15 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 
 @Entity
-@XmlRootElement
-public class Wycieczka {
+public class Wycieczka  {
 
 	@Id
-	@GeneratedValue
-	@XmlAttribute
-	private int id_wycieczka;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int wid;
 	private String nazwa;
 	private String opis;
 	private long data_odjazdu;
 	private long data_przyjazdu;
-	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Rezerwacja> rezerwacja;
-	
 	
 	public Wycieczka(){
 
@@ -46,7 +45,7 @@ public class Wycieczka {
 	
 	public int getID()
 	{
-		return id_wycieczka;
+		return wid;
 	}
 
 	public long getData_odjazdu() {
@@ -80,13 +79,6 @@ public class Wycieczka {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-
-	public List<Rezerwacja> getRezerwacja() {
-	    return rezerwacja;
-	}
-
-	public void setRezerwacja(List<Rezerwacja> param) {
-	    this.rezerwacja = param;
-	}
+	
 
 }//end Wycieczka

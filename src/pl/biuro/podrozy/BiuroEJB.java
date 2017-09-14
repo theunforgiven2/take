@@ -34,6 +34,15 @@ public class BiuroEJB{
 		return listaWycieczek;
 	}
 
+	public List<Rezerwacja> pobierzRezerwacjeDoWycieczki(int id){
+		List<Rezerwacja> rezerwacje = em.createQuery(
+			    "select r " +
+			    "from Rezerwacja r " +
+			    "where r.wycieczka.id = :id_wycieczki", Rezerwacja.class)
+			.setParameter( "id_wycieczki", id)
+			.getResultList();
+		return rezerwacje;
+	}
 	
 	public void usunWycieczke(int id) {
 		Wycieczka wyc = em.find(Wycieczka.class, id);
@@ -80,6 +89,13 @@ public class BiuroEJB{
 	
 	public void stworzRezerwacje(Rezerwacja rezerwacja)
 	{
+		em.persist(rezerwacja);
+	}
+	
+	public void stworzRezerwacjeW(Rezerwacja rezerwacja, int id)
+	{
+		Wycieczka wyc = this.znajdzWycieczke(id);
+		rezerwacja.setWycieczka(wyc);
 		em.persist(rezerwacja);
 	}
 	

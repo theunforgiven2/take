@@ -1,9 +1,12 @@
 package pl.biuro.podrozy;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.xml.bind.annotation.XmlAttribute;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -13,17 +16,17 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 
 @Entity
-@XmlRootElement
 public class Rezerwacja {
 
 	@Id
-	@GeneratedValue
-	@XmlAttribute
-	private int id_rezerwacja;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int rid;
 	private int liczba_osob;
 	private boolean stan;
 	private double zaliczka;
-
+	@ManyToOne
+	private Wycieczka wycieczka;
+	
 	public Rezerwacja(){
 
 	}
@@ -50,6 +53,14 @@ public class Rezerwacja {
 
 	public void setZaliczka(double zaliczka) {
 		this.zaliczka = zaliczka;
+	}
+	
+	public Wycieczka getWycieczka() {
+		return wycieczka;
+	}
+
+	public void setWycieczka(Wycieczka wycieczka) {
+		this.wycieczka = wycieczka;
 	}
 
 }//end Rezerwacja

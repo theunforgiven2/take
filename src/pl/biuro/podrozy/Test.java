@@ -3,12 +3,13 @@ package pl.biuro.podrozy;
 public class Test {
 
 	public static void main(String[] args) {
-				String serverUrl = "http://localhost:8080/biuro/podrozy";
+				String serverUrl = "http://localhost:8080/biuro";
 				try{
 					String url = serverUrl+"/stworz/wycieczka";
-					String message = "<wycieczka id_wycieczki=\"1\"><nazwa>nazwaWycieczki</nazwa><opis>opisWycieczki</opis><data_odjazdu>11092017</data_odjazdu><data_przyjazdu>12092017</data_przyjazdu></wycieczka>";
+					//String message = "<wycieczka id_wycieczki=\"1\"><nazwa>nazwaWycieczki</nazwa><opis>opisWycieczki</opis><data_odjazdu>11092017</data_odjazdu><data_przyjazdu>12092017</data_przyjazdu></wycieczka>";
 		
-					
+					String message="{nazwa: 'jebaæ', opis: 'dsadad', data_odjazdu: 'dsdsdd', data_przyjazdu: 'dddd'}";
+									
 					System.out.println("DOPOST "+url );
 					String txt = HttpHelper.doPost(url,message,"application/xml");
 					System.out.println("-----------------------");

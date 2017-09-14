@@ -4,15 +4,17 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 
-@Path("/podrozy")
+@Path("/")
 
 @Consumes({ "application/json" })
 @Produces({ "application/json" })
@@ -23,37 +25,45 @@ public class BiuroREST implements Biuro {
 
 	@Override
 	@POST
-	@Path("/stworz/wycieczka/")
+	@Path("/wycieczka")
 	public void stworzWycieczke(Wycieczka wycieczka) {
 		bean.stworzWycieczke(wycieczka);
 	}
 
 	@Override
 	@GET
-	@Path("/znajdz/wycieczka/{id}")	
+	@Path("/wycieczka/{id}")	
 	public Wycieczka znajdzWycieczke(@PathParam("id") int id) {
 		return bean.znajdzWycieczke(id);
 	}
 	
 	@Override
 	@GET
-	@Path("/pobierz/wycieczki")
+	@Path("/wycieczka")
 	public Wycieczki pobierzWycieczki() {
 		List<Wycieczka> lWyc = bean.pobierzWycieczki();
 		Wycieczki wyc = new Wycieczki(lWyc);
 		return wyc;
 	}
+	
+	@GET
+	@Path("/wycieczka/{id}/rezerwacje")
+	public Rezerwacje pobierzRezerwacjeWycieczki(@PathParam("id") int id) {
+		List<Rezerwacja> listaRezerwacji = bean.pobierzRezerwacjeDoWycieczki(id);
+		Rezerwacje rezerwacje = new Rezerwacje(listaRezerwacji);
+		return rezerwacje;
+	}
 
 	@Override
-	@GET
-	@Path("/usun/wycieczka/{id}")
+	@DELETE
+	@Path("/wycieczka/{id}")
 	public void usunWycieczke(@PathParam("id") int id) {
 		bean.usunWycieczke(id);
 	}
 	
 	@Override
-	@POST
-	@Path("/aktualizuj/wycieczka")
+	@PUT
+	@Path("/wycieczka")
 	public void aktualizujWycieczke(Wycieczka wycieczka)
 	{
 		bean.aktualizujWycieczke(wycieczka);
@@ -61,7 +71,7 @@ public class BiuroREST implements Biuro {
 
 	@Override
 	@POST
-	@Path("/stworz/katalog")
+	@Path("/katalog")
 	public void stworzKatalog(Katalog katalog)
 	{
 		bean.stworzKatalog(katalog);
@@ -69,7 +79,7 @@ public class BiuroREST implements Biuro {
 	
 	@Override
 	@GET
-	@Path("/znajdz/katalog/{id}")
+	@Path("/katalog/{id}")
 	public Katalog znajdzKatalog(@PathParam("id") int id)
 	{
 		return bean.znajdzKatalog(id);
@@ -77,7 +87,7 @@ public class BiuroREST implements Biuro {
 	
 	@Override
 	@GET
-	@Path("/pobierz/katalogi")
+	@Path("/katalog")
 	public Katalogi pobierzKatalogi()
 	{
 		List<Katalog> listaKatalogow = bean.pobierzKatalogi();
@@ -86,8 +96,8 @@ public class BiuroREST implements Biuro {
 	}
 	
 	@Override
-	@GET
-	@Path("/usun/katalog/{id}")
+	@DELETE
+	@Path("/katalog/{id}")
 	public void usunKatalog(@PathParam("id") int id)
 	{
 		bean.usunKatalog(id);
@@ -105,15 +115,20 @@ public class BiuroREST implements Biuro {
 	
 	@Override
 	@POST
-	@Path("/stworz/rezerwacja")
+	@Path("/rezerwacja")
 	public void stworzRezerwacje(Rezerwacja rezerwacja)
 	{
 		bean.stworzRezerwacje(rezerwacja);
 	}
 	
+	@POST
+	@Path("/rezerwacja/wycieczka/{id}")
+	public void rezerwacjaDoWycieczki(Rezerwacja rezerwacja, @PathParam("id") int id){
+		bean.stworzRezerwacjeW(rezerwacja, id);
+	}
 	@Override
 	@GET
-	@Path("/znajdz/rezerwacja/{id}")
+	@Path("/rezerwacja/{id}")
 	public Rezerwacja znajdzRezerwacje(@PathParam("id") int id)
 	{
 		return bean.znajdzRezerwacje(id);
@@ -121,7 +136,7 @@ public class BiuroREST implements Biuro {
 	
 	@Override
 	@GET
-	@Path("/pobierz/rezerwacje")
+	@Path("/rezerwacja")
 	public Rezerwacje pobierzRezerwacje()
 	{
 		List<Rezerwacja> listaRezerwacji = bean.pobierzRezerwacje();
@@ -131,15 +146,15 @@ public class BiuroREST implements Biuro {
 	
 	@Override
 	@GET
-	@Path("/usun/rezerwacja/{id}")
+	@Path("/rezerwacja/{id}")
 	public void usunRezerwacje(@PathParam("id") int id)
 	{
 		bean.usunRezerwacje(id);
 	}
 	
 	@Override
-	@POST
-	@Path("/aktualizuj/rezerwacja")
+	@PUT
+	@Path("/rezerwacja")
 	public void aktualizujRezerwacje(Rezerwacja rezerwacja)
 	{
 		bean.aktualizujRezerwacje(rezerwacja);

@@ -53,7 +53,17 @@ public class BiuroREST implements Biuro {
 		Rezerwacje rezerwacje = new Rezerwacje(listaRezerwacji);
 		return rezerwacje;
 	}
-
+	
+	@Override
+	@GET
+	@Path("/pobierz/wycieczka/z/katalog/{id}")
+	public Wycieczki pobierzWycieczkiZKatalogu(@PathParam("id") int idKatalog)
+	{
+		List<Wycieczka> listaWycieczek = bean.pobierzWycieczkiZKatalogu(idKatalog);
+		Wycieczki wyc = new Wycieczki(listaWycieczek);
+		return wyc;
+	}
+	
 	@Override
 	@DELETE
 	@Path("/wycieczka/{id}")
@@ -103,15 +113,7 @@ public class BiuroREST implements Biuro {
 		bean.usunKatalog(id);
 	}
 	
-	@Override
-	@GET
-	@Path("/pobierz/wycieczka/z/katalog/{id}")
-	public Wycieczki pobierzWycieczkiZKatalogu(@PathParam("id") int idKatalog)
-	{
-		List<Wycieczka> listaWycieczek = bean.pobierzWycieczkiZKatalogu(idKatalog);
-		Wycieczki wyc = new Wycieczki(listaWycieczek);
-		return wyc;
-	}
+	
 	
 	@Override
 	@POST
@@ -121,11 +123,12 @@ public class BiuroREST implements Biuro {
 		bean.stworzRezerwacje(rezerwacja);
 	}
 	
-	@POST
-	@Path("/rezerwacja/wycieczka/{id}")
-	public void rezerwacjaDoWycieczki(Rezerwacja rezerwacja, @PathParam("id") int id){
-		bean.stworzRezerwacjeW(rezerwacja, id);
-	}
+//	@POST
+//	@Path("/rezerwacja/wycieczka/{id}")
+//	public void rezerwacjaDoWycieczki(Rezerwacja rezerwacja, @PathParam("id") int id){
+//		bean.stworzRezerwacjeW(rezerwacja, id);
+//	}
+	
 	@Override
 	@GET
 	@Path("/rezerwacja/{id}")
@@ -160,51 +163,51 @@ public class BiuroREST implements Biuro {
 		bean.aktualizujRezerwacje(rezerwacja);
 	}
 	
+	//@Override
+//	@POST
+//	@Path("/stworz/uczestnictwo")
+//	public void stworzUczestnictwo(Uczestnictwo uczestnictwo)
+//	{
+//		bean.stworzUczestnictwo(uczestnictwo);
+//	}
+//	
+//	@Override
+//	@GET
+//	@Path("/znajdz/uczestnictwo/{id}")
+//	public Uczestnictwo znajdzUczestnictwo(@PathParam("id") int id)
+//	{
+//		return bean.znajdzUczestnictwo(id);
+//	}
+	
+//	@Override
+//	@GET
+//	@Path("/pobierz/uczestnictwa")
+//	public Uczestnictwa pobierzUczestnictwa()
+//	{
+//		List<Uczestnictwo> listaUczestnictw = bean.pobierzUczestnictwa();
+//		Uczestnictwa ucz = new Uczestnictwa(listaUczestnictw);
+//		return ucz;
+//	}
+//	
+//	@Override
+//	@GET
+//	@Path("/usun/uczestnictwo/{id}")
+//	public void usunUczestnictwo(@PathParam("id") int id)
+//	{
+//		bean.usunUczestnictwo(id);
+//	}
+//	
+//	@Override
+//	@POST
+//	@Path("/aktualizuj/uczestnictwo")
+//	public void aktualizujUczestnictwo(Uczestnictwo uczestnictwo)
+//	{
+//		bean.aktualizujUczestnictwo(uczestnictwo);
+//	}
+	
 	@Override
 	@POST
-	@Path("/stworz/uczestnictwo")
-	public void stworzUczestnictwo(Uczestnictwo uczestnictwo)
-	{
-		bean.stworzUczestnictwo(uczestnictwo);
-	}
-	
-	@Override
-	@GET
-	@Path("/znajdz/uczestnictwo/{id}")
-	public Uczestnictwo znajdzUczestnictwo(@PathParam("id") int id)
-	{
-		return bean.znajdzUczestnictwo(id);
-	}
-	
-	@Override
-	@GET
-	@Path("/pobierz/uczestnictwa")
-	public Uczestnictwa pobierzUczestnictwa()
-	{
-		List<Uczestnictwo> listaUczestnictw = bean.pobierzUczestnictwa();
-		Uczestnictwa ucz = new Uczestnictwa(listaUczestnictw);
-		return ucz;
-	}
-	
-	@Override
-	@GET
-	@Path("/usun/uczestnictwo/{id}")
-	public void usunUczestnictwo(@PathParam("id") int id)
-	{
-		bean.usunUczestnictwo(id);
-	}
-	
-	@Override
-	@POST
-	@Path("/aktualizuj/uczestnictwo")
-	public void aktualizujUczestnictwo(Uczestnictwo uczestnictwo)
-	{
-		bean.aktualizujUczestnictwo(uczestnictwo);
-	}
-	
-	@Override
-	@POST
-	@Path("/stworz/miejsce")
+	@Path("/miejsce")
 	public void stworzMiejsce(Miejsce miejsce)
 	{
 		bean.stworzMiejsce(miejsce);
@@ -212,7 +215,7 @@ public class BiuroREST implements Biuro {
 	
 	@Override
 	@GET
-	@Path("/znajdz/miejsce/{id}")
+	@Path("/miejsce/{id}")
 	public Miejsce znajdzMiejsce(@PathParam("id") int id)
 	{
 		return bean.znajdzMiejsce(id);
@@ -220,7 +223,7 @@ public class BiuroREST implements Biuro {
 	
 	@Override
 	@GET
-	@Path("/pobierz/miejsca")
+	@Path("/miejsce")
 	public Miejsca pobierzMiejsca()
 	{
 		List<Miejsce> listaMiejsc = bean.pobierzMiejsca();
@@ -229,19 +232,46 @@ public class BiuroREST implements Biuro {
 	}
 	
 	@Override
-	@GET
-	@Path("/usun/miejsce/{id}")
+	@DELETE
+	@Path("/miejsce/{id}")
 	public void usunMiejsce(@PathParam("id") int id)
 	{
 		bean.usunMiejsce(id);
 	}
 	
 	@Override
-	@POST
-	@Path("/aktualizuj/miejsce")
+	@PUT
+	@Path("/miejsce")
 	public void aktualizujMiejsce(Miejsce miejsce)
 	{
 		bean.aktualizujMiejsce(miejsce);
 	}
+	
+	@GET
+	@Path("/miejsce/{idm}/katalog/{idk}")
+	public void dodajMiejsceDoKatalogu(@PathParam("idm") int idMiejsce, @PathParam("idk") int idKatalog)
+	{
+		bean.dodajMiejsceDoKatalogu(idMiejsce, idKatalog);
+	}
+	
+	@GET
+	@Path("/wycieczka/{idw}/katalog/{idk}")
+	public void dodajWycieczkeDoKatalogu(@PathParam("idw") int idWycieczka, @PathParam("idk") int idKatalog)
+	{
+		bean.dodajWycieczkeDoKatalogu(idWycieczka, idKatalog);
+	}
 
+	@GET
+	@Path("/katalog/{idk}/rezerwacja/{idr}")
+	public void dodajKatalogDoRezerwacji(@PathParam("idk") int idKatalog, @PathParam("idr") int idRezerwacja)
+	{
+		bean.dodajKatalogDoRezerwacji(idKatalog, idRezerwacja);
+	}
+	
+	@GET
+	@Path("/miejsce/{idm}/wycieczka/{idw}")
+	public void dodajMiejsceDoWycieczki(@PathParam("idm") int idMiejsce, @PathParam("idw") int idWycieczka)
+	{
+		bean.dodajMiejsceDoWycieczki(idMiejsce, idWycieczka);
+	}
 }

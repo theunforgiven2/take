@@ -24,20 +24,9 @@ public class Rezerwacja {
 	private int liczba_osob;
 	private boolean stan;
 	private double zaliczka;
-	@ManyToOne
-	private Wycieczka wycieczka;
 	
-	public Rezerwacja(){
-
-	}
-
-	public boolean getStan() {
-		return stan;
-	}
-
-	public void setStan(boolean stan) {
-		this.stan = stan;
-	}
+	@ManyToOne
+	private Katalog katalog;
 
 	public int getLiczba_osob() {
 		return liczba_osob;
@@ -47,6 +36,14 @@ public class Rezerwacja {
 		this.liczba_osob = liczba_osob;
 	}
 
+	public boolean isStan() {
+		return stan;
+	}
+
+	public void setStan(boolean stan) {
+		this.stan = stan;
+	}
+
 	public double getZaliczka() {
 		return zaliczka;
 	}
@@ -54,13 +51,19 @@ public class Rezerwacja {
 	public void setZaliczka(double zaliczka) {
 		this.zaliczka = zaliczka;
 	}
-	
-	public Wycieczka getWycieczka() {
-		return wycieczka;
+
+	public Katalog getKatalog() {
+		return katalog;
 	}
 
-	public void setWycieczka(Wycieczka wycieczka) {
-		this.wycieczka = wycieczka;
+	public void setKatalog(Katalog katalog) {
+		this.katalog = katalog;
 	}
+
+	public int getRid() {
+		return rid;
+	}
+	
+	
 
 }//end Rezerwacja

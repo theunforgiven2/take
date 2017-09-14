@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import java.util.Collection;
 import java.util.List;
@@ -29,41 +30,63 @@ public class Katalog {
 	@GeneratedValue
 	@XmlAttribute
 	private int id_katalog;
-	private String nazwa;
-
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Wycieczka> wycieczka;
+	private long data_odjazdu;
+	private long data_przyjazdu;
+	private int cena;
+	
+	@ManyToOne
+	private Miejsce miejsce;
+	@ManyToOne
+	private Wycieczka wycieczka;
 	
 	public Katalog(){
 
 	}
 
-	public int getID()
-	{
-		return id_katalog;
-	}
-	
-	public String getNazwa() {
-		return nazwa;
+	public long getData_odjazdu() {
+		return data_odjazdu;
 	}
 
-	public void setNazwa(String nazwa) {
-		this.nazwa = nazwa;
+	public void setData_odjazdu(long data_odjazdu) {
+		this.data_odjazdu = data_odjazdu;
 	}
-	
-	public void dodajWycieczke(Wycieczka wycieczka)
-	{
-		this.wycieczka.add(wycieczka);
+
+	public long getData_przyjazdu() {
+		return data_przyjazdu;
 	}
-	
-	public List<Wycieczka> getlistaWycieczek()
-	{
+
+	public void setData_przyjazdu(long data_przyjazdu) {
+		this.data_przyjazdu = data_przyjazdu;
+	}
+
+	public int getCena() {
+		return cena;
+	}
+
+	public void setCena(int cena) {
+		this.cena = cena;
+	}
+
+	public Miejsce getMiejsce() {
+		return miejsce;
+	}
+
+	public void setMiejsce(Miejsce miejsce) {
+		this.miejsce = miejsce;
+	}
+
+	public Wycieczka getWycieczka() {
 		return wycieczka;
 	}
-	
-	public void setlistaWycieczek(List<Wycieczka> lista)
-	{
-		this.wycieczka = lista;
+
+	public void setWycieczka(Wycieczka wycieczka) {
+		this.wycieczka = wycieczka;
 	}
+
+	public int getId_katalog() {
+		return id_katalog;
+	}
+
+	
 
 }//end Katalog

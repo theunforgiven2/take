@@ -46,17 +46,17 @@ public interface Biuro {
 	
 	public abstract void aktualizujRezerwacje(Rezerwacja rezerwacja);
 	
-	//Uczestnictwo
-	
-	public abstract void stworzUczestnictwo(Uczestnictwo uczestnictwo);
-	
-	public abstract Uczestnictwo znajdzUczestnictwo(int id);
-	
-	public abstract Uczestnictwa pobierzUczestnictwa();
-	
-	public abstract void usunUczestnictwo(int id);
-	
-	public abstract void aktualizujUczestnictwo(Uczestnictwo uczestnictwo);
+//	//Uczestnictwo
+//	
+//	public abstract void stworzUczestnictwo(Uczestnictwo uczestnictwo);
+//	
+//	public abstract Uczestnictwo znajdzUczestnictwo(int id);
+//	
+//	public abstract Uczestnictwa pobierzUczestnictwa();
+//	
+//	public abstract void usunUczestnictwo(int id);
+//	
+//	public abstract void aktualizujUczestnictwo(Uczestnictwo uczestnictwo);
 	
 	//Miejsce
 	

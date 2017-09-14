@@ -36,32 +36,12 @@ public class Wycieczka  {
 	private int wid;
 	private String nazwa;
 	private String opis;
-	private long data_odjazdu;
-	private long data_przyjazdu;
+	
+	@ManyToOne
+	private Miejsce miejsce;
 	
 	public Wycieczka(){
 
-	}
-	
-	public int getID()
-	{
-		return wid;
-	}
-
-	public long getData_odjazdu() {
-		return data_odjazdu;
-	}
-
-	public void setData_odjazdu(long data_odjazdu) {
-		this.data_odjazdu = data_odjazdu;
-	}
-
-	public long getData_przyjazdu() {
-		return data_przyjazdu;
-	}
-
-	public void setData_przyjazdu(long data_przyjazdu) {
-		this.data_przyjazdu = data_przyjazdu;
 	}
 
 	public String getNazwa() {
@@ -79,6 +59,16 @@ public class Wycieczka  {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-	
 
+	public Miejsce getMiejsce() {
+		return miejsce;
+	}
+
+	public void setMiejsce(Miejsce miejsce) {
+		this.miejsce = miejsce;
+	}
+
+	public int getWid() {
+		return wid;
+	}
 }//end Wycieczka

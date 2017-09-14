@@ -81,10 +81,13 @@ public class BiuroEJB{
 	
 	public List<Wycieczka> pobierzWycieczkiZKatalogu(int idKatalog)
 	{
-		Query q = em.createQuery("select w from Wycieczka w where w.katalog.idKatalog LIKE :idKatalog").setParameter("idKatalog", idKatalog);
-		@SuppressWarnings("unchecked")
-		List<Wycieczka> list = q.getResultList();
-		return list;
+		List<Wycieczka> wycieczki = em.createQuery(
+			    "select w " +
+			    "from Wycieczka w " +
+			    "where w.katalog.id = :id_katalog", Wycieczka.class)
+			.setParameter( "id_katalog", idKatalog)
+			.getResultList();
+		return wycieczki;
 	}
 	
 	public void stworzRezerwacje(Rezerwacja rezerwacja)
@@ -92,13 +95,45 @@ public class BiuroEJB{
 		em.persist(rezerwacja);
 	}
 	
-	public void stworzRezerwacjeW(Rezerwacja rezerwacja, int id)
+//	public void stworzRezerwacjeW(Rezerwacja rezerwacja, int id)
+//	{
+//		Wycieczka wyc = this.znajdzWycieczke(id);
+//		rezerwacja.setsetWycieczka(wyc);
+//		em.persist(rezerwacja);
+//	}
+	
+	public void dodajWycieczkeDoKatalogu(int idWycieczka, int idKatalog)
 	{
-		Wycieczka wyc = this.znajdzWycieczke(id);
-		rezerwacja.setWycieczka(wyc);
-		em.persist(rezerwacja);
+		Wycieczka wyc = em.find(Wycieczka.class, idWycieczka);
+		Katalog kat = em.find(Katalog.class, idKatalog);
+		kat.setWycieczka(wyc);
+		em.persist(kat);
 	}
 	
+	public void dodajMiejsceDoKatalogu(int idMiejsce, int idKatalog)
+	{
+		Miejsce mi = em.find(Miejsce.class, idMiejsce);
+		Katalog kat = em.find(Katalog.class, idKatalog);
+		kat.setMiejsce(mi);
+		em.persist(kat);
+	}
+	
+	public void dodajMiejsceDoWycieczki(int idMiejsce, int idWycieczka)
+	{
+		Miejsce mi = em.find(Miejsce.class, idMiejsce);
+		Wycieczka wyc = em.find(Wycieczka.class, idWycieczka);
+		wyc.setMiejsce(mi);
+		em.persist(wyc);
+	}
+	
+	public void dodajKatalogDoRezerwacji(int idKatalog, int idRezerwacja)
+	{
+		Rezerwacja rez = em.find(Rezerwacja.class, idRezerwacja);
+		Katalog kat = em.find(Katalog.class, idKatalog);
+		rez.setKatalog(kat);
+		em.persist(rez);
+	}
+		
 	public Rezerwacja znajdzRezerwacje(int id)
 	{
 		return em.find(Rezerwacja.class, id);
@@ -123,34 +158,34 @@ public class BiuroEJB{
 		rezerwacja = em.merge(rezerwacja);
 	}
 	
-	public void stworzUczestnictwo(Uczestnictwo uczestnictwo)
-	{
-		em.persist(uczestnictwo);
-	}
-	
-	public Uczestnictwo znajdzUczestnictwo(int id)
-	{
-		return em.find(Uczestnictwo.class, id);
-	}
-	
-	public List<Uczestnictwo> pobierzUczestnictwa()
-	{
-		Query q = em.createQuery("select u from Uczestnictwo u");
-		@SuppressWarnings("unchecked")
-		List<Uczestnictwo> list = q.getResultList();
-		return list;
-	}
-	
-	public void usunUczestnictwo(int id)
-	{
-		Uczestnictwo ucz = em.find(Uczestnictwo.class, id);
-		em.remove(ucz);
-	}
-	
-	public void aktualizujUczestnictwo(Uczestnictwo uczestnictwo)
-	{
-		uczestnictwo = em.merge(uczestnictwo);
-	}
+//	public void stworzUczestnictwo(Uczestnictwo uczestnictwo)
+//	{
+//		em.persist(uczestnictwo);
+//	}
+//	
+//	public Uczestnictwo znajdzUczestnictwo(int id)
+//	{
+//		return em.find(Uczestnictwo.class, id);
+//	}
+//	
+//	public List<Uczestnictwo> pobierzUczestnictwa()
+//	{
+//		Query q = em.createQuery("select u from Uczestnictwo u");
+//		@SuppressWarnings("unchecked")
+//		List<Uczestnictwo> list = q.getResultList();
+//		return list;
+//	}
+//	
+//	public void usunUczestnictwo(int id)
+//	{
+//		Uczestnictwo ucz = em.find(Uczestnictwo.class, id);
+//		em.remove(ucz);
+//	}
+//	
+//	public void aktualizujUczestnictwo(Uczestnictwo uczestnictwo)
+//	{
+//		uczestnictwo = em.merge(uczestnictwo);
+//	}
 	
 	public void stworzMiejsce(Miejsce miejsce)
 	{
@@ -180,52 +215,4 @@ public class BiuroEJB{
 	{
 		miejsce = em.merge(miejsce);
 	}
-//	public void dodajDoKatalogu(Katalog katalog, Wycieczka wycieczka) {
-//		Katalog kat = em.find(Katalog.class, katalog.getID()); 
-//		kat.setWycieczka(wycieczka);
-//		em.persist(kat);
-//	}
-//
-//	@Override
-//	public void usunZKatalogu(Katalog katalog, Wycieczka wycieczka) {
-//		Katalog kat = em.find(Katalog.class, katalog.getID());
-//		kat.usunWycieczke(wycieczka);
-//		em.persist(kat);
-//	}
-//
-//	@Override
-//	public void stworzKatalog(int okres) {
-//		Katalog kat = new Katalog();
-//		kat.setOkres(okres);
-//		em.persist(kat);
-//	}
-//
-//	@Override
-//	public Katalog znajdzKatalog(int id) {
-//		Katalog kat = em.find(Katalog.class, id);
-//		return kat;
-//	}
-//
-//	@Override
-//	public void usunKatalog(Katalog katalog) {
-//		Katalog kat = em.find(Katalog.class, katalog);
-//		em.remove(kat);
-//		//em.remove(katalog);
-//	}
-//
-//	@Override
-//	public void stworzMiejsce(String nazwa, String opis) {
-//		Miejsce m = new Miejsce();
-//		m.setNazwa(nazwa);
-//		m.setOpis(opis);
-//		em.persist(m);
-//	}
-//
-//	@Override
-//	public void usunMiejsce(Miejsce miejsce) {
-//		Miejsce m = em.find(Miejsce.class, miejsce);
-//		em.remove(m);
-//		//em.remove(miejsce);
-//	}
-
 }

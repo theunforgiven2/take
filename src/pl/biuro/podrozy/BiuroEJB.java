@@ -271,7 +271,7 @@ public class BiuroEJB{
 		wyc.setMiejsce(wycieczka.getMiejsce());
 	}
 	
-	public void przypiszWycieczkeMiejsce(int idKatalog, int idWycieczka, int idMiejsce)
+	public void aktualizujWycieczkeMiejsceWKatalog(int idKatalog, int idWycieczka, int idMiejsce)
 	{
 		Katalog kat = em.find(Katalog.class, idKatalog);
 		Wycieczka wyc = em.find(Wycieczka.class, idWycieczka);
@@ -281,7 +281,7 @@ public class BiuroEJB{
 		kat.setWycieczka(wyc);
 	}
 	
-	public void przypiszKatalog(int idRezerwacja, int idKatalog)
+	public void aktualizujKatalogWRezerwacja(int idRezerwacja, int idKatalog)
 	{
 		Katalog kat = em.find(Katalog.class, idKatalog);
 		Rezerwacja rez = em.find(Rezerwacja.class, idRezerwacja);
@@ -289,7 +289,7 @@ public class BiuroEJB{
 		rez.setKatalog(kat);
 	}
 	
-	public void przypiszMiejsce(int idWycieczka, int idMiejsce)
+	public void aktualizujMiejsceWWycieczka(int idWycieczka, int idMiejsce)
 	{
 		Wycieczka wyc = em.find(Wycieczka.class, idWycieczka);
 		Miejsce mi = em.find(Miejsce.class, idMiejsce);

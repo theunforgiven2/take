@@ -211,30 +211,30 @@ public class BiuroREST implements Biuro {
 	
 	@PUT
 	@Path("/wycieczka/{id}")
-	public void aktualizujWycieczka(Wycieczka wycieczka, @PathParam("id") int id)
+	public void aktualizujWycieczke(Wycieczka wycieczka, @PathParam("id") int id)
 	{
 		bean.aktualizujWycieczke(wycieczka, id);
 	}
 	
 	@PUT
 	@Path("/katalog/{idk}/wycieczka/{idw}/miejsce/{idm}")
-	public void przypiszWycieczkeMiejsce(@PathParam("idk") int idKatalog, @PathParam("idw") int idWycieczka, @PathParam("idm") int idMiejsce)
+	public void aktualizujWycieczkeMiejsceWKatalog(@PathParam("idk") int idKatalog, @PathParam("idw") int idWycieczka, @PathParam("idm") int idMiejsce)
 	{
-		bean.przypiszWycieczkeMiejsce(idKatalog, idWycieczka, idMiejsce);
+		bean.aktualizujWycieczkeMiejsceWKatalog(idKatalog, idWycieczka, idMiejsce);
 	}
 	
 	@PUT
 	@Path("/rezerwacja/{idr}/katalog/{idk}")
-	public void przypiszKatalog(@PathParam("idr") int idRezerwacja, @PathParam("idk") int idKatalog)
+	public void aktualizujKatalogWRezerwacja(@PathParam("idr") int idRezerwacja, @PathParam("idk") int idKatalog)
 	{
-		bean.przypiszKatalog(idRezerwacja, idKatalog);
+		bean.aktualizujKatalogWRezerwacja(idRezerwacja, idKatalog);
 	}
 	
 	@PUT
 	@Path("/wycieczka/{idw}/miejsce/{idm}")
-	public void przypiszMiejsce(@PathParam("idw") int idWycieczka, @PathParam("idm") int idMiejsce)
+	public void aktualizujMiejsceWWycieczka(@PathParam("idw") int idWycieczka, @PathParam("idm") int idMiejsce)
 	{
-		bean.przypiszMiejsce(idWycieczka, idMiejsce);
+		bean.aktualizujMiejsceWWycieczka(idWycieczka, idMiejsce);
 	}
 	
 	// TODO NIE DZIALAJO DO POPRAWY

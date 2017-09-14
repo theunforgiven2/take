@@ -95,6 +95,7 @@ public class BiuroEJB{
 //			.getResultList();
 //		return wycieczki;
 //	}
+<<<<<<< HEAD
 	public List<Rezerwacja> pobierzRezerwacjeKatalogu(int idKatalog){
 		List<Rezerwacja> rezerwacje = em.createQuery(
 			    "select r " +
@@ -105,6 +106,9 @@ public class BiuroEJB{
 		return rezerwacje;
 		
 	}
+=======
+	
+>>>>>>> origin/master
 	public List<Katalog> pobierzKatalogiZRezerwacji(int idRezerwacja)
 	{
 		List<Katalog> katalogi = em.createQuery(
@@ -149,6 +153,7 @@ public class BiuroEJB{
 		return miejsca;
 	}
 	
+<<<<<<< HEAD
 	public void stworzRezerwacje(Rezerwacja rezerwacja, int id)
 	{
 		Katalog kat = this.znajdzKatalog(id);
@@ -156,6 +161,19 @@ public class BiuroEJB{
 		em.persist(rezerwacja);
 	}
 	
+=======
+	public void stworzRezerwacje(Rezerwacja rezerwacja)
+	{
+		em.persist(rezerwacja);
+	}
+	
+//	public void stworzRezerwacjeW(Rezerwacja rezerwacja, int id)
+//	{
+//		Wycieczka wyc = this.znajdzWycieczke(id);
+//		rezerwacja.setsetWycieczka(wyc);
+//		em.persist(rezerwacja);
+//	}
+>>>>>>> origin/master
 	
 	public void dodajWycieczkeDoKatalogu(int idWycieczka, int idKatalog)
 	{
@@ -212,6 +230,35 @@ public class BiuroEJB{
 	{
 		rezerwacja = em.merge(rezerwacja);
 	}
+	
+//	public void stworzUczestnictwo(Uczestnictwo uczestnictwo)
+//	{
+//		em.persist(uczestnictwo);
+//	}
+//	
+//	public Uczestnictwo znajdzUczestnictwo(int id)
+//	{
+//		return em.find(Uczestnictwo.class, id);
+//	}
+//	
+//	public List<Uczestnictwo> pobierzUczestnictwa()
+//	{
+//		Query q = em.createQuery("select u from Uczestnictwo u");
+//		@SuppressWarnings("unchecked")
+//		List<Uczestnictwo> list = q.getResultList();
+//		return list;
+//	}
+//	
+//	public void usunUczestnictwo(int id)
+//	{
+//		Uczestnictwo ucz = em.find(Uczestnictwo.class, id);
+//		em.remove(ucz);
+//	}
+//	
+//	public void aktualizujUczestnictwo(Uczestnictwo uczestnictwo)
+//	{
+//		uczestnictwo = em.merge(uczestnictwo);
+//	}
 	
 	public void stworzMiejsce(Miejsce miejsce)
 	{

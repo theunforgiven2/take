@@ -5,39 +5,26 @@ Projekcik
 Skopiuj biuro.war z folderu dist do ./wildfly/standalone/deployments i odpal serwer
 Jak nie wyskoczy zadna buba to w przegladarce wpisujesz:
 
-	localhost:8080/biuro/podrozy
+localhost:8080/biuro/podrozy
 
-	a pozniej co chcesz: *odpal najpierw test z projekt w eclipsie zeby cokolwiek wyskoczylo*
+a pozniej co chcesz: *odpal najpierw test z projekt w eclipsie zeby cokolwiek wyskoczylo*
 
-	/stworz
-	   /wycieczka
-	   /katalog
-	   /miejsce
-	   /rezerwacja
-	   /uczestnictwo
-	/pobierz
-	   /wycieczki
-	   /katalogi
-	   /miejsca
-	   /rezerwacje
-	   /uczestnictwa
-	/znajdz
-	   /wycieczka
-	   /katalog
-	   /miejsce
-	   /rezerwacja
-	   /uczestnictwo
-	     /{id}
-	/usun
-	   /wycieczka
-	   /katalog
-	   /miejsce
-	   /rezerwacja
-	   /uczestnictwo
-	     /{id}
-	/aktualizuj
-	   /wycieczka
-	   /katalog
-	   /miejsce
-	   /rezerwacja
-	   /uczestnictwo
+/wycieczka
+
+/katalog
+
+/miejsce
+
+/rezerwacja
+
+/uczestnictwo
+
+/miejsce/{idm}/katalog/{idk}
+
+/wycieczka/{idw}/katalog/{idk}
+
+/katalog/{idk}/rezerwacja/{idr}
+
+/miejsce/{idm}/wycieczka/{idw}
+
+pobieranie listy elementow nie bangla

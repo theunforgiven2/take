@@ -37,7 +37,11 @@ public class Wycieczka  {
 	private String nazwa;
 	private String opis;
 	
+<<<<<<< HEAD
 	@ManyToOne(cascade = CascadeType.DETACH)
+=======
+	@ManyToOne
+>>>>>>> origin/master
 	private Miejsce miejsce;
 	
 	public Wycieczka(){

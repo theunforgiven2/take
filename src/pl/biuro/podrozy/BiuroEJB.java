@@ -285,12 +285,16 @@ public class BiuroEJB{
 		kat.setData_przyjazdu(katalog.getData_przyjazdu());
 	}
 	
-	public void aktualizujKatalogWRezerwacja(int idRezerwacja, int idKatalog)
+	public void aktualizujKatalogWRezerwacja(Rezerwacja rezerwacja, int idRezerwacja, int idKatalog)
 	{
 		Katalog kat = em.find(Katalog.class, idKatalog);
 		Rezerwacja rez = em.find(Rezerwacja.class, idRezerwacja);
 		
 		rez.setKatalog(kat);
+		rez.setLiczba_osob(rezerwacja.getLiczba_osob());
+		rez.setStan(rezerwacja.isStan());
+		rez.setZaliczka(rezerwacja.getZaliczka());
+		
 	}
 	
 	public void aktualizujMiejsceWWycieczka(Wycieczka wycieczka, int idWycieczka, int idMiejsce)

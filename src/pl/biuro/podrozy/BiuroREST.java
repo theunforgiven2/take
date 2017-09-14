@@ -225,9 +225,9 @@ public class BiuroREST implements Biuro {
 	
 	@PUT
 	@Path("/rezerwacja/{idr}/katalog/{idk}")
-	public void aktualizujKatalogWRezerwacja(@PathParam("idr") int idRezerwacja, @PathParam("idk") int idKatalog)
+	public void aktualizujKatalogWRezerwacja(Rezerwacja rezerwacja, @PathParam("idr") int idRezerwacja, @PathParam("idk") int idKatalog)
 	{
-		bean.aktualizujKatalogWRezerwacja(idRezerwacja, idKatalog);
+		bean.aktualizujKatalogWRezerwacja(rezerwacja, idRezerwacja, idKatalog);
 	}
 	
 	@PUT

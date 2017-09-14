@@ -16,7 +16,9 @@ public class BiuroEJB{
 	EntityManager em;
 	
 
-	public void stworzWycieczke(Wycieczka wycieczka) {
+	public void stworzWycieczke(Wycieczka wycieczka, int mid) {
+		Miejsce miejsce = this.znajdzMiejsce(mid);
+		wycieczka.setMiejsce(miejsce);
 		em.persist(wycieczka);
 	}
 
@@ -54,8 +56,12 @@ public class BiuroEJB{
 		wycieczka = em.merge(wycieczka);
 	}
 
-	public void stworzKatalog(Katalog katalog)
+	public void stworzKatalog(Katalog katalog, int wid, int mid)
 	{
+		Wycieczka wycieczka = this.znajdzWycieczke(wid);
+		Miejsce miejsce = this.znajdzMiejsce(mid);
+		katalog.setMiejsce(miejsce);
+		katalog.setWycieczka(wycieczka);
 		em.persist(katalog);
 	}
 	
@@ -79,26 +85,110 @@ public class BiuroEJB{
 		em.remove(kat);
 	}
 	
+//	public List<Wycieczka> pobierzWycieczkiZKatalogu(int idKatalog)
+//	{
+//		List<Wycieczka> wycieczki = em.createQuery(
+//			    "select w " +
+//			    "from Wycieczka w " +
+//			    "where w.katalog.id = :id_katalog", Wycieczka.class)
+//			.setParameter( "id_katalog", idKatalog)
+//			.getResultList();
+//		return wycieczki;
+//	}
+	public List<Rezerwacja> pobierzRezerwacjeKatalogu(int idKatalog){
+		List<Rezerwacja> rezerwacje = em.createQuery(
+			    "select r " +
+			    "from Rezerwacja r " +
+			    "where r.katalog.id_katalog = :idKatalog", Rezerwacja.class)
+			.setParameter( "idKatalog", idKatalog)
+			.getResultList();
+		return rezerwacje;
+		
+	}
+	public List<Katalog> pobierzKatalogiZRezerwacji(int idRezerwacja)
+	{
+		List<Katalog> katalogi = em.createQuery(
+			    "select k " +
+			    "from Katalog k " +
+			    "where k.rezerwacja.id = :id_rezerwacja", Katalog.class)
+			.setParameter( "id_rezerwacja", idRezerwacja)
+			.getResultList();
+		return katalogi;
+	}
+	
+	public List<Miejsce> pobierzMiejscaZKatalogu(int idKatalog)
+	{
+		List<Miejsce> miejsca = em.createQuery(
+			    "select m " +
+			    "from Miejsce m " +
+			    "where m.katalog.id = :id_katalog", Miejsce.class)
+			.setParameter( "id_katalog", idKatalog)
+			.getResultList();
+		return miejsca;
+	}
+	
 	public List<Wycieczka> pobierzWycieczkiZKatalogu(int idKatalog)
 	{
-		Query q = em.createQuery("select w from Wycieczka w where w.katalog.idKatalog LIKE :idKatalog").setParameter("idKatalog", idKatalog);
-		@SuppressWarnings("unchecked")
-		List<Wycieczka> list = q.getResultList();
-		return list;
+		List<Wycieczka> wycieczki = em.createQuery(
+			    "select w " +
+			    "from Wycieczka w " +
+			    "where w.katalog.id = :id_katalog", Wycieczka.class)
+			.setParameter( "id_katalog", idKatalog)
+			.getResultList();
+		return wycieczki;
 	}
 	
-	public void stworzRezerwacje(Rezerwacja rezerwacja)
+	public List<Miejsce> pobierzMiejscaZWycieczki(int idWycieczka)
 	{
+		List<Miejsce> miejsca = em.createQuery(
+			    "select m " +
+			    "from Miejsce m " +
+			    "where m.wycieczka.id = :id_wycieczka", Miejsce.class)
+			.setParameter( "id_wycieczka", idWycieczka)
+			.getResultList();
+		return miejsca;
+	}
+	
+	public void stworzRezerwacje(Rezerwacja rezerwacja, int id)
+	{
+		Katalog kat = this.znajdzKatalog(id);
+		rezerwacja.setKatalog(kat);
 		em.persist(rezerwacja);
 	}
 	
-	public void stworzRezerwacjeW(Rezerwacja rezerwacja, int id)
+	
+	public void dodajWycieczkeDoKatalogu(int idWycieczka, int idKatalog)
 	{
-		Wycieczka wyc = this.znajdzWycieczke(id);
-		rezerwacja.setWycieczka(wyc);
-		em.persist(rezerwacja);
+		Wycieczka wyc = em.find(Wycieczka.class, idWycieczka);
+		Katalog kat = em.find(Katalog.class, idKatalog);
+		kat.setWycieczka(wyc);
+		em.persist(kat);
 	}
 	
+	public void dodajMiejsceDoKatalogu(int idMiejsce, int idKatalog)
+	{
+		Miejsce mi = em.find(Miejsce.class, idMiejsce);
+		Katalog kat = em.find(Katalog.class, idKatalog);
+		kat.setMiejsce(mi);
+		em.persist(kat);
+	}
+	
+	public void dodajMiejsceDoWycieczki(int idMiejsce, int idWycieczka)
+	{
+		Miejsce mi = em.find(Miejsce.class, idMiejsce);
+		Wycieczka wyc = em.find(Wycieczka.class, idWycieczka);
+		wyc.setMiejsce(mi);
+		em.persist(wyc);
+	}
+	
+	public void dodajKatalogDoRezerwacji(int idKatalog, int idRezerwacja)
+	{
+		Rezerwacja rez = em.find(Rezerwacja.class, idRezerwacja);
+		Katalog kat = em.find(Katalog.class, idKatalog);
+		rez.setKatalog(kat);
+		em.persist(rez);
+	}
+		
 	public Rezerwacja znajdzRezerwacje(int id)
 	{
 		return em.find(Rezerwacja.class, id);
@@ -121,35 +211,6 @@ public class BiuroEJB{
 	public void aktualizujRezerwacje(Rezerwacja rezerwacja)
 	{
 		rezerwacja = em.merge(rezerwacja);
-	}
-	
-	public void stworzUczestnictwo(Uczestnictwo uczestnictwo)
-	{
-		em.persist(uczestnictwo);
-	}
-	
-	public Uczestnictwo znajdzUczestnictwo(int id)
-	{
-		return em.find(Uczestnictwo.class, id);
-	}
-	
-	public List<Uczestnictwo> pobierzUczestnictwa()
-	{
-		Query q = em.createQuery("select u from Uczestnictwo u");
-		@SuppressWarnings("unchecked")
-		List<Uczestnictwo> list = q.getResultList();
-		return list;
-	}
-	
-	public void usunUczestnictwo(int id)
-	{
-		Uczestnictwo ucz = em.find(Uczestnictwo.class, id);
-		em.remove(ucz);
-	}
-	
-	public void aktualizujUczestnictwo(Uczestnictwo uczestnictwo)
-	{
-		uczestnictwo = em.merge(uczestnictwo);
 	}
 	
 	public void stworzMiejsce(Miejsce miejsce)
@@ -176,56 +237,10 @@ public class BiuroEJB{
 		em.remove(miejsce);
 	}
 	
-	public void aktualizujMiejsce(Miejsce miejsce)
+	public void aktualizujMiejsce(Miejsce miejsce, int id)
 	{
-		miejsce = em.merge(miejsce);
+		Miejsce m = em.find(Miejsce.class, id);
+		m.setAdres(miejsce.getAdres());
+		m.setMiejscowosc(miejsce.getMiejscowosc());
 	}
-//	public void dodajDoKatalogu(Katalog katalog, Wycieczka wycieczka) {
-//		Katalog kat = em.find(Katalog.class, katalog.getID()); 
-//		kat.setWycieczka(wycieczka);
-//		em.persist(kat);
-//	}
-//
-//	@Override
-//	public void usunZKatalogu(Katalog katalog, Wycieczka wycieczka) {
-//		Katalog kat = em.find(Katalog.class, katalog.getID());
-//		kat.usunWycieczke(wycieczka);
-//		em.persist(kat);
-//	}
-//
-//	@Override
-//	public void stworzKatalog(int okres) {
-//		Katalog kat = new Katalog();
-//		kat.setOkres(okres);
-//		em.persist(kat);
-//	}
-//
-//	@Override
-//	public Katalog znajdzKatalog(int id) {
-//		Katalog kat = em.find(Katalog.class, id);
-//		return kat;
-//	}
-//
-//	@Override
-//	public void usunKatalog(Katalog katalog) {
-//		Katalog kat = em.find(Katalog.class, katalog);
-//		em.remove(kat);
-//		//em.remove(katalog);
-//	}
-//
-//	@Override
-//	public void stworzMiejsce(String nazwa, String opis) {
-//		Miejsce m = new Miejsce();
-//		m.setNazwa(nazwa);
-//		m.setOpis(opis);
-//		em.persist(m);
-//	}
-//
-//	@Override
-//	public void usunMiejsce(Miejsce miejsce) {
-//		Miejsce m = em.find(Miejsce.class, miejsce);
-//		em.remove(m);
-//		//em.remove(miejsce);
-//	}
-
 }

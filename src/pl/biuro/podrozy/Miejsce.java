@@ -17,42 +17,31 @@ public class Miejsce {
 	@GeneratedValue
 	@XmlAttribute
 	private int id_miejsce;
-	private String nazwa;
-	private String opis;
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Katalog> katalog;
+	private String miejscowosc;
+	private String adres;
 	
 	public Miejsce()
 	{
 		
 	}
-	
-	public String getNazwa()
-	{
-		return nazwa;
-	}
-	
-	public void setNazwa(String nazwa)
-	{
-		this.nazwa = nazwa;
-	}
-	
-	public String getOpis()
-	{
-		return opis;
-	}
-	
-	public void setOpis(String opis)
-	{
-		this.opis = opis;
-	}
-	
-	public List<Katalog> getKatalog() {
-	    return katalog;
+
+	public String getMiejscowosc() {
+		return miejscowosc;
 	}
 
-	public void setKatalog(List<Katalog> param) {
-	    this.katalog = param;
+	public void setMiejscowosc(String miejscowosc) {
+		this.miejscowosc = miejscowosc;
 	}
 
+	public String getAdres() {
+		return adres;
+	}
+
+	public void setAdres(String adres) {
+		this.adres = adres;
+	}
+
+	public int getId_miejsce() {
+		return id_miejsce;
+	}
 }

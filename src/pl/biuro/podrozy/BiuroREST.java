@@ -25,9 +25,9 @@ public class BiuroREST implements Biuro {
 
 	@Override
 	@POST
-	@Path("/wycieczka")
-	public void stworzWycieczke(Wycieczka wycieczka) {
-		bean.stworzWycieczke(wycieczka);
+	@Path("/wycieczka/miejscowosc/{mid}")
+	public void stworzWycieczke(Wycieczka wycieczka, @PathParam("mid") int mid) {
+		bean.stworzWycieczke(wycieczka, mid);
 	}
 
 	@Override
@@ -46,14 +46,14 @@ public class BiuroREST implements Biuro {
 		return wyc;
 	}
 	
-	@GET
-	@Path("/wycieczka/{id}/rezerwacje")
-	public Rezerwacje pobierzRezerwacjeWycieczki(@PathParam("id") int id) {
-		List<Rezerwacja> listaRezerwacji = bean.pobierzRezerwacjeDoWycieczki(id);
-		Rezerwacje rezerwacje = new Rezerwacje(listaRezerwacji);
-		return rezerwacje;
-	}
-
+//	@GET
+//	@Path("/wycieczka/{id}/rezerwacje")
+//	public Rezerwacje pobierzRezerwacjeWycieczki(@PathParam("id") int id) {
+//		List<Rezerwacja> listaRezerwacji = bean.pobierzRezerwacjeDoWycieczki(id);
+//		Rezerwacje rezerwacje = new Rezerwacje(listaRezerwacji);
+//		return rezerwacje;
+//	}
+	
 	@Override
 	@DELETE
 	@Path("/wycieczka/{id}")
@@ -71,10 +71,10 @@ public class BiuroREST implements Biuro {
 
 	@Override
 	@POST
-	@Path("/katalog")
-	public void stworzKatalog(Katalog katalog)
+	@Path("/katalog/wycieczka/{wid}/miejsce/{mid}")
+	public void stworzKatalog(Katalog katalog, @PathParam("wid") int wid, @PathParam("mid") int mid)
 	{
-		bean.stworzKatalog(katalog);
+		bean.stworzKatalog(katalog, wid, mid);
 	}
 	
 	@Override
@@ -83,6 +83,14 @@ public class BiuroREST implements Biuro {
 	public Katalog znajdzKatalog(@PathParam("id") int id)
 	{
 		return bean.znajdzKatalog(id);
+	}
+	
+	@GET
+	@Path("/katalog/{id}/rezerwacje")
+	public Rezerwacje rezerwacjeKatalogu(@PathParam("id") int id){
+		List<Rezerwacja> lista = bean.pobierzRezerwacjeKatalogu(id);
+		Rezerwacje rez = new Rezerwacje(lista);
+		return rez;
 	}
 	
 	@Override
@@ -103,29 +111,16 @@ public class BiuroREST implements Biuro {
 		bean.usunKatalog(id);
 	}
 	
-	@Override
-	@GET
-	@Path("/pobierz/wycieczka/z/katalog/{id}")
-	public Wycieczki pobierzWycieczkiZKatalogu(@PathParam("id") int idKatalog)
-	{
-		List<Wycieczka> listaWycieczek = bean.pobierzWycieczkiZKatalogu(idKatalog);
-		Wycieczki wyc = new Wycieczki(listaWycieczek);
-		return wyc;
-	}
 	
-	@Override
-	@POST
-	@Path("/rezerwacja")
-	public void stworzRezerwacje(Rezerwacja rezerwacja)
-	{
-		bean.stworzRezerwacje(rezerwacja);
-	}
 	
 	@POST
-	@Path("/rezerwacja/wycieczka/{id}")
-	public void rezerwacjaDoWycieczki(Rezerwacja rezerwacja, @PathParam("id") int id){
-		bean.stworzRezerwacjeW(rezerwacja, id);
+	@Path("/rezerwacja/katalog/{id}")
+	public void stworzRezerwacje(Rezerwacja rezerwacja, @PathParam("id") int id)
+	{
+		bean.stworzRezerwacje(rezerwacja, id);
 	}
+
+	
 	@Override
 	@GET
 	@Path("/rezerwacja/{id}")
@@ -145,7 +140,7 @@ public class BiuroREST implements Biuro {
 	}
 	
 	@Override
-	@GET
+	@DELETE
 	@Path("/rezerwacja/{id}")
 	public void usunRezerwacje(@PathParam("id") int id)
 	{
@@ -162,49 +157,7 @@ public class BiuroREST implements Biuro {
 	
 	@Override
 	@POST
-	@Path("/stworz/uczestnictwo")
-	public void stworzUczestnictwo(Uczestnictwo uczestnictwo)
-	{
-		bean.stworzUczestnictwo(uczestnictwo);
-	}
-	
-	@Override
-	@GET
-	@Path("/znajdz/uczestnictwo/{id}")
-	public Uczestnictwo znajdzUczestnictwo(@PathParam("id") int id)
-	{
-		return bean.znajdzUczestnictwo(id);
-	}
-	
-	@Override
-	@GET
-	@Path("/pobierz/uczestnictwa")
-	public Uczestnictwa pobierzUczestnictwa()
-	{
-		List<Uczestnictwo> listaUczestnictw = bean.pobierzUczestnictwa();
-		Uczestnictwa ucz = new Uczestnictwa(listaUczestnictw);
-		return ucz;
-	}
-	
-	@Override
-	@GET
-	@Path("/usun/uczestnictwo/{id}")
-	public void usunUczestnictwo(@PathParam("id") int id)
-	{
-		bean.usunUczestnictwo(id);
-	}
-	
-	@Override
-	@POST
-	@Path("/aktualizuj/uczestnictwo")
-	public void aktualizujUczestnictwo(Uczestnictwo uczestnictwo)
-	{
-		bean.aktualizujUczestnictwo(uczestnictwo);
-	}
-	
-	@Override
-	@POST
-	@Path("/stworz/miejsce")
+	@Path("/miejsce")
 	public void stworzMiejsce(Miejsce miejsce)
 	{
 		bean.stworzMiejsce(miejsce);
@@ -212,7 +165,7 @@ public class BiuroREST implements Biuro {
 	
 	@Override
 	@GET
-	@Path("/znajdz/miejsce/{id}")
+	@Path("/miejsce/{id}")
 	public Miejsce znajdzMiejsce(@PathParam("id") int id)
 	{
 		return bean.znajdzMiejsce(id);
@@ -220,7 +173,7 @@ public class BiuroREST implements Biuro {
 	
 	@Override
 	@GET
-	@Path("/pobierz/miejsca")
+	@Path("/miejsce")
 	public Miejsca pobierzMiejsca()
 	{
 		List<Miejsce> listaMiejsc = bean.pobierzMiejsca();
@@ -229,19 +182,57 @@ public class BiuroREST implements Biuro {
 	}
 	
 	@Override
-	@GET
-	@Path("/usun/miejsce/{id}")
+	@DELETE
+	@Path("/miejsce/{id}")
 	public void usunMiejsce(@PathParam("id") int id)
 	{
 		bean.usunMiejsce(id);
 	}
 	
 	@Override
-	@POST
-	@Path("/aktualizuj/miejsce")
-	public void aktualizujMiejsce(Miejsce miejsce)
+	@PUT
+	@Path("/miejsce/{id}")
+	public void aktualizujMiejsce(Miejsce miejsce, @PathParam("id") int id)
 	{
-		bean.aktualizujMiejsce(miejsce);
+		bean.aktualizujMiejsce(miejsce, id);
 	}
-
+	
+	
+	// TODO NIE DZIALAJO DO POPRAWY
+	@Override
+	@GET
+	@Path("/katalog/{idk}/wycieczka")
+	public Wycieczki pobierzWycieczkiZKatalogu(@PathParam("idk") int idKatalog)
+	{
+		List<Wycieczka> listaWycieczek = bean.pobierzWycieczkiZKatalogu(idKatalog);
+		Wycieczki wyc = new Wycieczki(listaWycieczek);
+		return wyc;
+	}
+	
+	@GET
+	@Path("/rezerwacja/{idr}/katalog")
+	public Katalogi pobierzKatalogiZRezerwacji(@PathParam("idr") int idRezerwacja)
+	{
+		List<Katalog> kat = bean.pobierzKatalogiZRezerwacji(idRezerwacja);
+		Katalogi katalogi = new Katalogi(kat);
+		return katalogi;
+	}
+	
+	@GET
+	@Path("/katalog/{idk}/miejsce")
+	public Miejsca pobierzMiejscaZKatalogu(@PathParam("idk") int idKatalog)
+	{
+		List<Miejsce> mi = bean.pobierzMiejscaZKatalogu(idKatalog);
+		Miejsca miejsca = new Miejsca(mi);
+		return miejsca;
+	}
+	
+	@GET
+	@Path("/wycieczka/{idw}/miejsce")
+	public Miejsca pobierzMiejscaZWycieczki(@PathParam("idw") int idWycieczka)
+	{
+		List<Miejsce> mi = bean.pobierzMiejscaZWycieczki(idWycieczka);
+		Miejsca miejsca = new Miejsca(mi);
+		return miejsca;
+	}
 }

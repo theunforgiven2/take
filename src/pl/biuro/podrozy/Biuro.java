@@ -8,7 +8,7 @@ import javax.ejb.Local;
 public interface Biuro {
 	// Wycieczka
 	
-	public abstract void stworzWycieczke(Wycieczka wycieczka);
+	public abstract void stworzWycieczke(Wycieczka wycieczka, int mid);
 
 	public abstract Wycieczka znajdzWycieczke(int id);
 
@@ -24,7 +24,7 @@ public interface Biuro {
 	
 	// Katalog
 	
-	public abstract void stworzKatalog(Katalog katalog);
+	public abstract void stworzKatalog(Katalog katalog, int wid, int mid);
 	
 	public abstract Katalog znajdzKatalog(int id);
 	
@@ -36,7 +36,7 @@ public interface Biuro {
 	
 	//Rezerwacja
 	
-	public abstract void stworzRezerwacje(Rezerwacja rezerwacja);
+	public abstract void stworzRezerwacje(Rezerwacja rezerwacja, int id);
 	
 	public abstract Rezerwacja znajdzRezerwacje(int id);
 	
@@ -46,17 +46,17 @@ public interface Biuro {
 	
 	public abstract void aktualizujRezerwacje(Rezerwacja rezerwacja);
 	
-	//Uczestnictwo
-	
-	public abstract void stworzUczestnictwo(Uczestnictwo uczestnictwo);
-	
-	public abstract Uczestnictwo znajdzUczestnictwo(int id);
-	
-	public abstract Uczestnictwa pobierzUczestnictwa();
-	
-	public abstract void usunUczestnictwo(int id);
-	
-	public abstract void aktualizujUczestnictwo(Uczestnictwo uczestnictwo);
+//	//Uczestnictwo
+//	
+//	public abstract void stworzUczestnictwo(Uczestnictwo uczestnictwo);
+//	
+//	public abstract Uczestnictwo znajdzUczestnictwo(int id);
+//	
+//	public abstract Uczestnictwa pobierzUczestnictwa();
+//	
+//	public abstract void usunUczestnictwo(int id);
+//	
+//	public abstract void aktualizujUczestnictwo(Uczestnictwo uczestnictwo);
 	
 	//Miejsce
 	
@@ -68,7 +68,7 @@ public interface Biuro {
 	
 	public abstract void usunMiejsce(int id);
 	
-	public abstract void aktualizujMiejsce(Miejsce miejsce);
+	public abstract void aktualizujMiejsce(Miejsce miejsce, int id);
 	
 	//public abstract void stworzMiejsce(String nazwa, String opis);
 	

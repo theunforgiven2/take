@@ -270,4 +270,14 @@ public class BiuroEJB{
 		wyc.setOpis(wycieczka.getOpis());
 		wyc.setMiejsce(wycieczka.getMiejsce());
 	}
+	
+	public void przypiszWycieczkeMiejsce(int idKatalog, int idWycieczka, int idMiejsce)
+	{
+		Katalog kat = em.find(Katalog.class, idKatalog);
+		Wycieczka wyc = em.find(Wycieczka.class, idWycieczka);
+		Miejsce mi = em.find(Miejsce.class, idMiejsce);
+		
+		kat.setMiejsce(mi);
+		kat.setWycieczka(wyc);
+	}
 }

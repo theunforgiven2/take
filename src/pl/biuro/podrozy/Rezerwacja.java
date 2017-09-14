@@ -26,30 +26,17 @@ public class Rezerwacja {
 	private boolean stan;
 	private double zaliczka;
 	
-<<<<<<< HEAD
 	@ManyToOne(cascade = CascadeType.DETACH)
-=======
-	@ManyToOne
->>>>>>> origin/master
 	private Katalog katalog;
 
 	public int getLiczba_osob() {
 		return liczba_osob;
-<<<<<<< HEAD
 	}
 
 	public void setLiczba_osob(int liczba_osob) {
 		this.liczba_osob = liczba_osob;
 	}
 
-=======
-	}
-
-	public void setLiczba_osob(int liczba_osob) {
-		this.liczba_osob = liczba_osob;
-	}
-
->>>>>>> origin/master
 	public boolean isStan() {
 		return stan;
 	}

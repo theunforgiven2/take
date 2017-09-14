@@ -34,15 +34,9 @@ public class Katalog {
 	private long data_przyjazdu;
 	private int cena;
 	
-<<<<<<< HEAD
 	@ManyToOne(cascade = CascadeType.DETACH)
 	private Miejsce miejsce;
 	@ManyToOne(cascade = CascadeType.DETACH)
-=======
-	@ManyToOne
-	private Miejsce miejsce;
-	@ManyToOne
->>>>>>> origin/master
 	private Wycieczka wycieczka;
 	
 	public Katalog(){

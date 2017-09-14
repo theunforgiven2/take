@@ -111,10 +111,6 @@ public class BiuroREST implements Biuro {
 		bean.usunKatalog(id);
 	}
 	
-<<<<<<< HEAD
-=======
-	
->>>>>>> origin/master
 	
 	
 	@POST
@@ -125,15 +121,6 @@ public class BiuroREST implements Biuro {
 	}
 
 	
-<<<<<<< HEAD
-=======
-//	@POST
-//	@Path("/rezerwacja/wycieczka/{id}")
-//	public void rezerwacjaDoWycieczki(Rezerwacja rezerwacja, @PathParam("id") int id){
-//		bean.stworzRezerwacjeW(rezerwacja, id);
-//	}
-	
->>>>>>> origin/master
 	@Override
 	@GET
 	@Path("/rezerwacja/{id}")
@@ -167,48 +154,6 @@ public class BiuroREST implements Biuro {
 	{
 		bean.aktualizujRezerwacje(rezerwacja);
 	}
-	
-	//@Override
-//	@POST
-//	@Path("/stworz/uczestnictwo")
-//	public void stworzUczestnictwo(Uczestnictwo uczestnictwo)
-//	{
-//		bean.stworzUczestnictwo(uczestnictwo);
-//	}
-//	
-//	@Override
-//	@GET
-//	@Path("/znajdz/uczestnictwo/{id}")
-//	public Uczestnictwo znajdzUczestnictwo(@PathParam("id") int id)
-//	{
-//		return bean.znajdzUczestnictwo(id);
-//	}
-	
-//	@Override
-//	@GET
-//	@Path("/pobierz/uczestnictwa")
-//	public Uczestnictwa pobierzUczestnictwa()
-//	{
-//		List<Uczestnictwo> listaUczestnictw = bean.pobierzUczestnictwa();
-//		Uczestnictwa ucz = new Uczestnictwa(listaUczestnictw);
-//		return ucz;
-//	}
-//	
-//	@Override
-//	@GET
-//	@Path("/usun/uczestnictwo/{id}")
-//	public void usunUczestnictwo(@PathParam("id") int id)
-//	{
-//		bean.usunUczestnictwo(id);
-//	}
-//	
-//	@Override
-//	@POST
-//	@Path("/aktualizuj/uczestnictwo")
-//	public void aktualizujUczestnictwo(Uczestnictwo uczestnictwo)
-//	{
-//		bean.aktualizujUczestnictwo(uczestnictwo);
-//	}
 	
 	@Override
 	@POST
@@ -246,7 +191,6 @@ public class BiuroREST implements Biuro {
 	
 	@Override
 	@PUT
-<<<<<<< HEAD
 	@Path("/miejsce/{id}")
 	public void aktualizujMiejsce(Miejsce miejsce, @PathParam("id") int id)
 	{
@@ -287,75 +231,6 @@ public class BiuroREST implements Biuro {
 	@Path("/wycieczka/{idw}/miejsce")
 	public Miejsca pobierzMiejscaZWycieczki(@PathParam("idw") int idWycieczka)
 	{
-=======
-	@Path("/miejsce")
-	public void aktualizujMiejsce(Miejsce miejsce)
-	{
-		bean.aktualizujMiejsce(miejsce);
-	}
-	
-	@GET
-	@Path("/miejsce/{idm}/katalog/{idk}")
-	public void dodajMiejsceDoKatalogu(@PathParam("idm") int idMiejsce, @PathParam("idk") int idKatalog)
-	{
-		bean.dodajMiejsceDoKatalogu(idMiejsce, idKatalog);
-	}
-	
-	@GET
-	@Path("/wycieczka/{idw}/katalog/{idk}")
-	public void dodajWycieczkeDoKatalogu(@PathParam("idw") int idWycieczka, @PathParam("idk") int idKatalog)
-	{
-		bean.dodajWycieczkeDoKatalogu(idWycieczka, idKatalog);
-	}
-
-	@GET
-	@Path("/katalog/{idk}/rezerwacja/{idr}")
-	public void dodajKatalogDoRezerwacji(@PathParam("idk") int idKatalog, @PathParam("idr") int idRezerwacja)
-	{
-		bean.dodajKatalogDoRezerwacji(idKatalog, idRezerwacja);
-	}
-	
-	@GET
-	@Path("/miejsce/{idm}/wycieczka/{idw}")
-	public void dodajMiejsceDoWycieczki(@PathParam("idm") int idMiejsce, @PathParam("idw") int idWycieczka)
-	{
-		bean.dodajMiejsceDoWycieczki(idMiejsce, idWycieczka);
-	}
-	
-	// TODO NIE DZIALAJO DO POPRAWY
-	@Override
-	@GET
-	@Path("/katalog/{idk}/wycieczka")
-	public Wycieczki pobierzWycieczkiZKatalogu(@PathParam("idk") int idKatalog)
-	{
-		List<Wycieczka> listaWycieczek = bean.pobierzWycieczkiZKatalogu(idKatalog);
-		Wycieczki wyc = new Wycieczki(listaWycieczek);
-		return wyc;
-	}
-	
-	@GET
-	@Path("/rezerwacja/{idr}/katalog")
-	public Katalogi pobierzKatalogiZRezerwacji(@PathParam("idr") int idRezerwacja)
-	{
-		List<Katalog> kat = bean.pobierzKatalogiZRezerwacji(idRezerwacja);
-		Katalogi katalogi = new Katalogi(kat);
-		return katalogi;
-	}
-	
-	@GET
-	@Path("/katalog/{idk}/miejsce")
-	public Miejsca pobierzMiejscaZKatalogu(@PathParam("idk") int idKatalog)
-	{
-		List<Miejsce> mi = bean.pobierzMiejscaZKatalogu(idKatalog);
-		Miejsca miejsca = new Miejsca(mi);
-		return miejsca;
-	}
-	
-	@GET
-	@Path("/wycieczka/{idw}/miejsce")
-	public Miejsca pobierzMiejscaZWycieczki(@PathParam("idw") int idWycieczka)
-	{
->>>>>>> origin/master
 		List<Miejsce> mi = bean.pobierzMiejscaZWycieczki(idWycieczka);
 		Miejsca miejsca = new Miejsca(mi);
 		return miejsca;

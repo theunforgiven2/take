@@ -79,6 +79,39 @@ public class BiuroEJB{
 		em.remove(kat);
 	}
 	
+//	public List<Wycieczka> pobierzWycieczkiZKatalogu(int idKatalog)
+//	{
+//		List<Wycieczka> wycieczki = em.createQuery(
+//			    "select w " +
+//			    "from Wycieczka w " +
+//			    "where w.katalog.id = :id_katalog", Wycieczka.class)
+//			.setParameter( "id_katalog", idKatalog)
+//			.getResultList();
+//		return wycieczki;
+//	}
+	
+	public List<Katalog> pobierzKatalogiZRezerwacji(int idRezerwacja)
+	{
+		List<Katalog> katalogi = em.createQuery(
+			    "select k " +
+			    "from Katalog k " +
+			    "where k.rezerwacja.id = :id_rezerwacja", Katalog.class)
+			.setParameter( "id_rezerwacja", idRezerwacja)
+			.getResultList();
+		return katalogi;
+	}
+	
+	public List<Miejsce> pobierzMiejscaZKatalogu(int idKatalog)
+	{
+		List<Miejsce> miejsca = em.createQuery(
+			    "select m " +
+			    "from Miejsce m " +
+			    "where m.katalog.id = :id_katalog", Miejsce.class)
+			.setParameter( "id_katalog", idKatalog)
+			.getResultList();
+		return miejsca;
+	}
+	
 	public List<Wycieczka> pobierzWycieczkiZKatalogu(int idKatalog)
 	{
 		List<Wycieczka> wycieczki = em.createQuery(
@@ -88,6 +121,17 @@ public class BiuroEJB{
 			.setParameter( "id_katalog", idKatalog)
 			.getResultList();
 		return wycieczki;
+	}
+	
+	public List<Miejsce> pobierzMiejscaZWycieczki(int idWycieczka)
+	{
+		List<Miejsce> miejsca = em.createQuery(
+			    "select m " +
+			    "from Miejsce m " +
+			    "where m.wycieczka.id = :id_wycieczka", Miejsce.class)
+			.setParameter( "id_wycieczka", idWycieczka)
+			.getResultList();
+		return miejsca;
 	}
 	
 	public void stworzRezerwacje(Rezerwacja rezerwacja)

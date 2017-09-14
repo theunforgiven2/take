@@ -46,23 +46,13 @@ public class BiuroREST implements Biuro {
 		return wyc;
 	}
 	
-	@GET
-	@Path("/wycieczka/{id}/rezerwacje")
-	public Rezerwacje pobierzRezerwacjeWycieczki(@PathParam("id") int id) {
-		List<Rezerwacja> listaRezerwacji = bean.pobierzRezerwacjeDoWycieczki(id);
-		Rezerwacje rezerwacje = new Rezerwacje(listaRezerwacji);
-		return rezerwacje;
-	}
-	
-	@Override
-	@GET
-	@Path("/pobierz/wycieczka/z/katalog/{id}")
-	public Wycieczki pobierzWycieczkiZKatalogu(@PathParam("id") int idKatalog)
-	{
-		List<Wycieczka> listaWycieczek = bean.pobierzWycieczkiZKatalogu(idKatalog);
-		Wycieczki wyc = new Wycieczki(listaWycieczek);
-		return wyc;
-	}
+//	@GET
+//	@Path("/wycieczka/{id}/rezerwacje")
+//	public Rezerwacje pobierzRezerwacjeWycieczki(@PathParam("id") int id) {
+//		List<Rezerwacja> listaRezerwacji = bean.pobierzRezerwacjeDoWycieczki(id);
+//		Rezerwacje rezerwacje = new Rezerwacje(listaRezerwacji);
+//		return rezerwacje;
+//	}
 	
 	@Override
 	@DELETE
@@ -148,7 +138,7 @@ public class BiuroREST implements Biuro {
 	}
 	
 	@Override
-	@GET
+	@DELETE
 	@Path("/rezerwacja/{id}")
 	public void usunRezerwacje(@PathParam("id") int id)
 	{
@@ -273,5 +263,43 @@ public class BiuroREST implements Biuro {
 	public void dodajMiejsceDoWycieczki(@PathParam("idm") int idMiejsce, @PathParam("idw") int idWycieczka)
 	{
 		bean.dodajMiejsceDoWycieczki(idMiejsce, idWycieczka);
+	}
+	
+	// TODO NIE DZIALAJO DO POPRAWY
+	@Override
+	@GET
+	@Path("/katalog/{idk}/wycieczka")
+	public Wycieczki pobierzWycieczkiZKatalogu(@PathParam("idk") int idKatalog)
+	{
+		List<Wycieczka> listaWycieczek = bean.pobierzWycieczkiZKatalogu(idKatalog);
+		Wycieczki wyc = new Wycieczki(listaWycieczek);
+		return wyc;
+	}
+	
+	@GET
+	@Path("/rezerwacja/{idr}/katalog")
+	public Katalogi pobierzKatalogiZRezerwacji(@PathParam("idr") int idRezerwacja)
+	{
+		List<Katalog> kat = bean.pobierzKatalogiZRezerwacji(idRezerwacja);
+		Katalogi katalogi = new Katalogi(kat);
+		return katalogi;
+	}
+	
+	@GET
+	@Path("/katalog/{idk}/miejsce")
+	public Miejsca pobierzMiejscaZKatalogu(@PathParam("idk") int idKatalog)
+	{
+		List<Miejsce> mi = bean.pobierzMiejscaZKatalogu(idKatalog);
+		Miejsca miejsca = new Miejsca(mi);
+		return miejsca;
+	}
+	
+	@GET
+	@Path("/wycieczka/{idw}/miejsce")
+	public Miejsca pobierzMiejscaZWycieczki(@PathParam("idw") int idWycieczka)
+	{
+		List<Miejsce> mi = bean.pobierzMiejscaZWycieczki(idWycieczka);
+		Miejsca miejsca = new Miejsca(mi);
+		return miejsca;
 	}
 }

@@ -223,6 +223,20 @@ public class BiuroREST implements Biuro {
 		bean.przypiszWycieczkeMiejsce(idKatalog, idWycieczka, idMiejsce);
 	}
 	
+	@PUT
+	@Path("/rezerwacja/{idr}/katalog/{idk}")
+	public void przypiszKatalog(@PathParam("idr") int idRezerwacja, @PathParam("idk") int idKatalog)
+	{
+		bean.przypiszKatalog(idRezerwacja, idKatalog);
+	}
+	
+	@PUT
+	@Path("/wycieczka/{idw}/miejsce/{idm}")
+	public void przypiszMiejsce(@PathParam("idw") int idWycieczka, @PathParam("idm") int idMiejsce)
+	{
+		bean.przypiszMiejsce(idWycieczka, idMiejsce);
+	}
+	
 	// TODO NIE DZIALAJO DO POPRAWY
 	@Override
 	@GET

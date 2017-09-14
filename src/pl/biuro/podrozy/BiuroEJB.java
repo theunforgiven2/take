@@ -280,4 +280,20 @@ public class BiuroEJB{
 		kat.setMiejsce(mi);
 		kat.setWycieczka(wyc);
 	}
+	
+	public void przypiszKatalog(int idRezerwacja, int idKatalog)
+	{
+		Katalog kat = em.find(Katalog.class, idKatalog);
+		Rezerwacja rez = em.find(Rezerwacja.class, idRezerwacja);
+		
+		rez.setKatalog(kat);
+	}
+	
+	public void przypiszMiejsce(int idWycieczka, int idMiejsce)
+	{
+		Wycieczka wyc = em.find(Wycieczka.class, idWycieczka);
+		Miejsce mi = em.find(Miejsce.class, idMiejsce);
+		
+		wyc.setMiejsce(mi);
+	}
 }

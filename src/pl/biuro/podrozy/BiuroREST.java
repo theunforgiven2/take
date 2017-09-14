@@ -216,7 +216,7 @@ public class BiuroREST implements Biuro {
 		bean.aktualizujWycieczke(wycieczka, id);
 	}
 	
-	@GET
+	@PUT
 	@Path("/katalog/{idk}/wycieczka/{idw}/miejsce/{idm}")
 	public void przypiszWycieczkeMiejsce(@PathParam("idk") int idKatalog, @PathParam("idw") int idWycieczka, @PathParam("idm") int idMiejsce)
 	{
